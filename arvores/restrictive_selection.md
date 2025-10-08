@@ -1,5 +1,6 @@
 # Most Restrictive Selection
 
+```mermaid
 graph TD
     %% Folhas (tabelas)
     C[cliente]:::folha
