@@ -7,18 +7,18 @@ graph TD
     %% Folhas (tabelas)
     C[cliente]:::folha
     CO[compra]:::folha
-    MF[med_filtrado]:::folha
+    M[medicamento]:::folha
 
     %% Joins (⨝)
-    J1[⨝ Join Compra-Med_Filtrado]:::join
-    J2[⨝ Join Cliente-Compra]:::join
+    J1[⨝ fk_medicamento_id_medicamento = id_medicamento]:::join
+    J2[⨝ id_cliente = fk_cliente_id_cliente]:::join
 
-    %% Projeção final (π)
-    P[π nomeCliente, dsMedic, valorMedic]:::projecao
+    %% Projeção final (π *)
+    P[π *]:::projecao
 
-    %% Conexões
+    %% Ligações
     J1 --> CO
-    J1 --> MF
+    J1 --> M
     J2 --> C
     J2 --> J1
     P --> J2

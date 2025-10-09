@@ -4,23 +4,23 @@
 
 ```mermaid
 graph TD
-    %% Folhas (tabelas filtradas)
-    C[cliente]:::folha
+    %% Folhas (tabelas projetadas)
+    CP[clientes_proj]:::folha
     CO[compra]:::folha
-    MF[med_filtrado]:::folha
+    MP[medicamentos_proj]:::folha
 
     %% Joins (⨝)
-    J1[⨝ Join Compra-Med_Filtrado]:::join
-    J2[⨝ Join Cliente-Compra]:::join
+    J1[⨝ id_cliente = fk_cliente_id_cliente]:::join
+    J2[⨝ fk_medicamento_id_medicamento = id_medicamento]:::join
 
     %% Projeção final (π)
-    P[π nomeCliente, dsMedic, valorMedic]:::projecao
+    P[π nomeCliente, dsMedic]:::projecao
 
-    %% Conexões
+    %% Ligações
+    J1 --> CP
     J1 --> CO
-    J1 --> MF
-    J2 --> C
     J2 --> J1
+    J2 --> MP
     P --> J2
 
     %% Estilos
