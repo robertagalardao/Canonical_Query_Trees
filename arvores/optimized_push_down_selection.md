@@ -1,26 +1,26 @@
-# Transformation of Cartesian Products into Junction
+# Push-Down Selection
 
-## Sem heurística:
+## Com heurística aplicada:
 
 ```mermaid
 graph TD
     %% Folhas (tabelas)
     C[cliente]:::folha
     CO[compra]:::folha
-    M[medicamento]:::folha
+    MF[med_filtrado]:::folha
 
     %% Joins (⨝)
-    J1[⨝ Join Cliente-Compra]:::join
-    J2[⨝ Join Resultado-Medicamento]:::join
+    J1[⨝ fk_medicamento_id_medicamento = id_medicamento]:::join
+    J2[⨝ id_cliente = fk_cliente_id_cliente]:::join
 
     %% Projeção final (π)
     P[π nomeCliente, dsMedic, valorMedic]:::projecao
 
-    %% Conexões
-    J1 --> C
+    %% Ligações
     J1 --> CO
+    J1 --> MF
+    J2 --> C
     J2 --> J1
-    J2 --> M
     P --> J2
 
     %% Estilos
