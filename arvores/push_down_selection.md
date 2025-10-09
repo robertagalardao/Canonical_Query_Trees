@@ -10,16 +10,16 @@ graph TD
     M[medicamento]:::folha
 
     %% Seleção (σ)
-    S[σ valorMedic > 50]:::selecao
+    S[σ valorMedic > 80]:::selecao
 
     %% Joins (⨝)
-    J1[⨝ Join Compra-Medicamento]:::join
-    J2[⨝ Join Cliente-Compra]:::join
+    J1[⨝ fk_medicamento_id_medicamento = id_medicamento]:::join
+    J2[⨝ id_cliente = fk_cliente_id_cliente]:::join
 
     %% Projeção final (π)
     P[π nomeCliente, dsMedic, valorMedic]:::projecao
 
-    %% Conexões
+    %% Ligações
     S --> M
     J1 --> CO
     J1 --> S
