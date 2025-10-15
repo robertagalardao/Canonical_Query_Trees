@@ -4,26 +4,31 @@
 
 ```mermaid
 graph TD
-    %% Folhas (tabelas)
+    %% Folhas
     C[cliente]:::folha
     CO[compra]:::folha
     M[medicamento]:::folha
 
-    %% Joins (⨝)
-    J1[⨝ Join Cliente-Compra]:::join
-    J2[⨝ Join Resultado-Medicamento]:::join
+    %% Produto cartesiano
+    X1[× Produto cartesiano]:::operacao
+    X2[× Produto cartesiano]:::operacao
 
-    %% Projeção final (π)
+    %% Seleção com condições do WHERE
+    S[σ c.id_cliente = co.fk_cliente_id_cliente ∧ co.fk_medicamento_id_medicamento = m.id_medicamento]:::selecao
+
+    %% Projeção final
     P[π nomeCliente, dsMedic, valorMedic]:::projecao
 
     %% Conexões
-    J1 --> C
-    J1 --> CO
-    J2 --> J1
-    J2 --> M
-    P --> J2
+    X1 --> C
+    X1 --> CO
+    X2 --> X1
+    X2 --> M
+    S --> X2
+    P --> S
 
     %% Estilos
     classDef folha fill:#f2f2f2,stroke:#333,stroke-width:1px;
-    classDef join fill:#c8f7c5,stroke:#2a9d27,stroke-width:1.5px;
+    classDef operacao fill:#d9eaff,stroke:#0074D9,stroke-width:1.5px;
+    classDef selecao fill:#fcd5ce,stroke:#d62828,stroke-width:1.5px;
     classDef projecao fill:#ffd6a5,stroke:#e67e22,stroke-width:1.5px;
